@@ -1,42 +1,26 @@
 pipeline {
     agent any
-    
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-        
         stage('Build') {
             steps {
                 echo 'Building the project...'
+                // Add your build commands here (e.g., Maven, Gradle, npm, etc.)
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running tests...'
+                // Add test commands here (e.g., running unit tests)
             }
         }
-        
-        stage('Deploy to Dev') {
+        stage('Deploy') {
             when {
-                branch 'dev'
+                branch 'main' // For example, only deploy from the 'main' branch
             }
             steps {
-                echo 'Deploying to Dev environment...'
-            }
-        }
-
-        stage('Deploy to Production') {
-            when {
-                branch 'main'
-            }
-            steps {
-                echo 'Deploying to Production environment...'
+                echo 'Deploying to production...'
+                // Add deploy commands here
             }
         }
     }
 }
-
